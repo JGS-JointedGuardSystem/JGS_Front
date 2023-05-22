@@ -1,0 +1,1 @@
+export { default as LoginBackGroundImg } from './LoginBackGroundImg.png';

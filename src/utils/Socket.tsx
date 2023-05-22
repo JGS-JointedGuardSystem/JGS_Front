@@ -6,7 +6,7 @@ socket.on('connect', () => {
   console.log('Connected to server');
 });
 
-socket.on('message', (data: string) => {
+socket.on('message', (data: string) => {  
   console.log('Received message:', data);
 });
 
