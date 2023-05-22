@@ -7,5 +7,6 @@ export const globalStyle = css`
     user-select: none;
     -webkit-touch-callout: none;
     box-sizing: border-box;
+    margin: 0;
   }
 `;
