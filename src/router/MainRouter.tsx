@@ -6,7 +6,7 @@ function MainRouter() {
   return (
     <Routes>
       <Route path="/temporary" element={<TemporaryPage />} />
-      <Route path="/sign" element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 }
