@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import TemporaryPage from "../pages/TemporaryPage";
+import LoginPage from "../pages/LoginPage";
+import SignupPage from "../pages/SignupPage";
 
 function MainRouter() {
   return (
     <Routes>
-      <Route path="/temporary" element={<TemporaryPage />} />
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
     </Routes>
   );
 }

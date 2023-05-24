@@ -19,16 +19,16 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <RecoilRoot>
-        <QueryClientProvider client={queryClient}>
-          <Global styles={globalStyle} />
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <Global styles={globalStyle} />
+        <RecoilRoot>
           <BrowserRouter>
             <MainRouter />
           </BrowserRouter>
-        </QueryClientProvider>
-      </RecoilRoot>
-    </ThemeProvider>
+        </RecoilRoot>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 
