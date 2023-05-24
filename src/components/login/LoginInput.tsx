@@ -3,7 +3,7 @@ import { LoginInputDataType, LoginInputType } from "../../models/Login";
 import { useState } from "react";
 import Input from "../common/Input";
 import { Eye } from "../../assets/login";
-import { LoginInputData } from "../../constance";
+import { LoginInputData } from "../../constants";
 
 const LoginInput = () => {
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
