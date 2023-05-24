@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { LoginBackGroundImg } from "../assets/login";
-import LoginDetail from "../components/login/LoginDetail";
+import LoginInput from "../components/login/LoginInput";
 import { useNavigate } from "react-router";
 import Button from "../components/common/Button";
 
@@ -11,7 +11,7 @@ function LoginPage() {
     <Container>
       <Wrapper>
         <p>로그인</p>
-        <LoginDetail />
+        <LoginInput />
         <Button text="로그인" />
         <span>
           계정이 없으신가요?
