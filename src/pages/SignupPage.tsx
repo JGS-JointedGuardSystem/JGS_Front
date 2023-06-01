@@ -11,8 +11,8 @@ const SignupPage = () => {
     <Container>
       <Wrapper>
         <p>회원가입</p>
-          <SignUpInput />
-          <Button text="회원가입"/>
+        <SignUpInput />
+        <Button text="회원가입" />
         <span>
           이미 계정이 있으신가요?
           <GoLogin onClick={() => navigate("/")}>로그인 하기</GoLogin>
@@ -25,9 +25,9 @@ const SignupPage = () => {
 const Container = styled.div`
   position: relative;
   display: flex;
+  height: 100vh;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background: linear-gradient(
       1.82deg,
       rgba(0, 0, 0, 0.75) 58.5%,
@@ -41,20 +41,19 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 522px;
-  height: 499px;
+  min-height: 499px;
   left: 699px;
   top: 291px;
   background-color: ${({ theme }) => theme.WHITE};
   box-shadow: 0px 4px 100px #000000;
   border-radius: 8px;
-  padding: 0 70px;
+  padding: 25px 70px;
   box-sizing: border-box;
   p {
     display: flex;
     justify-content: center;
     font-size: 32px;
     left: 219px;
-    padding-top: 43px;
     font-weight: 600;
   }
   span {
@@ -69,6 +68,5 @@ const GoLogin = styled.span`
   font-weight: 600;
   padding-left: 3px;
 `;
-
 
 export default SignupPage;
