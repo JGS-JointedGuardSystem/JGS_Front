@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import Button from "../components/common/Button";
 
 function LoginPage() {
-  const naigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -15,7 +15,7 @@ function LoginPage() {
         <Button text="로그인" />
         <span>
           계정이 없으신가요?
-          <GoSignUp onClick={() => naigate("/signup")}>회원가입하기</GoSignUp>
+          <GoSignUp onClick={() => navigate("/signup")}>회원가입하기</GoSignUp>
         </span>
       </Wrapper>
     </Container>
