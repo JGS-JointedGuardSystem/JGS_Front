@@ -11,8 +11,8 @@ function LoginPage() {
     <Container>
       <Wrapper>
         <p>로그인</p>
-          <LoginInput />
-          <Button text="로그인" />
+        <LoginInput />
+        <Button text="로그인" />
         <span>
           계정이 없으신가요?
           <GoSignUp onClick={() => navigate("/signup")}>회원가입하기</GoSignUp>
