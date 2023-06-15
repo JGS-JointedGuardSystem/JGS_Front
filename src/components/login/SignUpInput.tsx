@@ -4,17 +4,14 @@ import Input from "../common/Input";
 import styled from "@emotion/styled";
 import { Eye } from "../../assets/login";
 import { SignupInputType } from "../../models/Signup";
+import { useRecoilState } from "recoil";
+import { signupInputsAtom } from "../../atom/authAtom";
 
 function SignUpInput() {
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
   const [isCheckShowPassword, setIsCheckShowPassword] =
     useState<boolean>(false);
-  const [inputs, setInputs] = useState<SignupInputType>({
-    id: "",
-    password: "",
-    checkPassword: "",
-    certificationNumber: "",
-  });
+  const [inputs, setInputs] = useRecoilState<SignupInputType>(signupInputsAtom);
 
   const passwordType = isShowPassword ? "text" : "password";
   const checkPasswordType = isCheckShowPassword ? "text" : "password";
