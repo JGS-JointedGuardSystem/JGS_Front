@@ -5,6 +5,7 @@ import { Global, ThemeProvider } from "@emotion/react";
 import { RecoilRoot } from "recoil";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { theme } from "./styles/Theme";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,6 +24,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <Global styles={globalStyle} />
         <RecoilRoot>
+          <Toaster />
           <BrowserRouter>
             <MainRouter />
           </BrowserRouter>
