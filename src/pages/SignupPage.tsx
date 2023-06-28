@@ -7,38 +7,28 @@ import { signupInputsAtom } from "../atom/authAtom";
 import { useRecoilValue } from "recoil";
 import { toast } from "react-hot-toast";
 import { SignupInputType } from "../models/Signup";
-import { useMutation } from "react-query";
-import { userSignup } from "../utils/api/auth";
+import { UserSignup } from "../utils/api/auth";
 
 const SignupPage = () => {
   const navigate = useNavigate();
   const inputsData = useRecoilValue<SignupInputType>(signupInputsAtom);
 
-  const { mutate: onSignup } = useMutation(
-    "onSignup",
-    () => userSignup(inputsData),
-    {
-      onSuccess: () => {
-        toast.success("회원가입이 완료되었습니다.", { duration: 1000 });
-        navigate("/");
-      },
-      onError: (error: any) => {
-        if (
-          error.response.status === 400 &&
-          error.response.data.message === "중복된 아이디입니다."
-        ) {
-          toast.error("중복된 아이디입니다.", { duration: 1000 });
-        }
-      },
+  const { mutate: signupMutate } = UserSignup();
+
+  const onClickSignup = () => {
+    if (inputsData.password !== inputsData.checkPassword) {
+      toast.error("비밀번호가 일치하지 않습니다.", { duration: 1000 });
+    } else {
+      signupMutate(inputsData);
     }
-  );
+  };
 
   return (
     <Container>
       <Wrapper>
         <p>회원가입</p>
         <SignUpInput />
-        <Button text="회원가입" onClick={onSignup} />
+        <Button text="회원가입" onClick={onClickSignup} />
         <span>
           이미 계정이 있으신가요?
           <GoLogin onClick={() => navigate("/")}>로그인 하기</GoLogin>

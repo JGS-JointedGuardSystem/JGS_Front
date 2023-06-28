@@ -5,31 +5,19 @@ import { useNavigate } from "react-router";
 import Button from "../components/common/Button";
 import { useRecoilValue } from "recoil";
 import { loginInputsAtom } from "../atom/authAtom";
-import { useMutation } from "react-query";
-import { userLogin } from "../utils/api/auth";
-import { toast } from "react-hot-toast";
+import { UserLogin } from "../utils/api/auth";
 
 function LoginPage() {
   const navigate = useNavigate();
   const inputsData = useRecoilValue(loginInputsAtom);
-
-  const { mutate: onLogin } = useMutation(
-    "onLogin",
-    () => userLogin(inputsData),
-    {
-      onSuccess: () => {
-        toast.success("로그인이 완료되었습니다.", { duration: 1000 });
-        navigate("/main");
-      },
-    }
-  );
+  const { mutate: loginMutate } = UserLogin();
 
   return (
     <Container>
       <Wrapper>
         <p>로그인</p>
         <LoginInput />
-        <Button text="로그인" onClick={onLogin} />
+        <Button text="로그인" onClick={() => loginMutate(inputsData)} />
         <span>
           계정이 없으신가요?
           <GoSignUp onClick={() => navigate("/signup")}>회원가입하기</GoSignUp>
