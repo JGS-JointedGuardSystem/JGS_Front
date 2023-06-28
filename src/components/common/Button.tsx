@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
-const Button = ({ text }: { text: string }) => {
-  return <ButtonContainer>{text}</ButtonContainer>;
+const Button = ({ text, onClick }: { text: string; onClick: () => void }) => {
+  return <ButtonContainer onClick={onClick}>{text}</ButtonContainer>;
 };
 
 const ButtonContainer = styled.button`

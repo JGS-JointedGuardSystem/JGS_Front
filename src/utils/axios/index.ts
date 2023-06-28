@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { getToken, setToken } from "../functions/TokenManager";
 
-const BASE_URL = process.env.JGS_BASE_URL;
+const BASE_URL = process.env.REACT_APP_PUBLIC_JGS_BASE_URL;
 
 const instance = axios.create({
   baseURL: BASE_URL,

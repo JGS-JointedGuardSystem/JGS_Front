@@ -3,16 +3,32 @@ import { LoginBackGroundImg } from "../assets/login";
 import { useNavigate } from "react-router";
 import SignUpInput from "../components/login/SignUpInput";
 import Button from "../components/common/Button";
+import { signupInputsAtom } from "../atom/authAtom";
+import { useRecoilValue } from "recoil";
+import { toast } from "react-hot-toast";
+import { SignupInputType } from "../models/Signup";
+import { UserSignup } from "../utils/api/auth";
 
 const SignupPage = () => {
   const navigate = useNavigate();
+  const inputsData = useRecoilValue<SignupInputType>(signupInputsAtom);
+
+  const { mutate: signupMutate } = UserSignup();
+
+  const onClickSignup = () => {
+    if (inputsData.password !== inputsData.checkPassword) {
+      toast.error("비밀번호가 일치하지 않습니다.", { duration: 1000 });
+    } else {
+      signupMutate(inputsData);
+    }
+  };
 
   return (
     <Container>
       <Wrapper>
         <p>회원가입</p>
         <SignUpInput />
-        <Button text="회원가입" />
+        <Button text="회원가입" onClick={onClickSignup} />
         <span>
           이미 계정이 있으신가요?
           <GoLogin onClick={() => navigate("/")}>로그인 하기</GoLogin>

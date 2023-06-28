@@ -3,16 +3,21 @@ import { LoginBackGroundImg } from "../assets/login";
 import LoginInput from "../components/login/LoginInput";
 import { useNavigate } from "react-router";
 import Button from "../components/common/Button";
+import { useRecoilValue } from "recoil";
+import { loginInputsAtom } from "../atom/authAtom";
+import { UserLogin } from "../utils/api/auth";
 
 function LoginPage() {
   const navigate = useNavigate();
+  const inputsData = useRecoilValue(loginInputsAtom);
+  const { mutate: loginMutate } = UserLogin();
 
   return (
     <Container>
       <Wrapper>
         <p>로그인</p>
         <LoginInput />
-        <Button text="로그인" />
+        <Button text="로그인" onClick={() => loginMutate(inputsData)} />
         <span>
           계정이 없으신가요?
           <GoSignUp onClick={() => navigate("/signup")}>회원가입하기</GoSignUp>
