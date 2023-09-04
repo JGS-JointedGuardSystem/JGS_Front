@@ -1,18 +1,37 @@
-import { io, Socket } from 'socket.io-client';
+import { useEffect } from "react";
+import io from "socket.io-client";
+import React from "react";
 
-const socket: Socket = io('http://localhost:3000');
+const BASE_URL = process.env.REACT_APP_PUBLIC_JGS_SOCKET_BASE_URL;
 
-socket.on('connect', () => {
-  console.log('Connected to server');
+if (!BASE_URL) {
+  throw new Error("error");
+}
+
+export const Connectsocket = io(BASE_URL, {
+  autoConnect: false,
 });
 
-socket.on('message', (data: string) => {  
-  console.log('Received message:', data);
-});
+const Socket = () => {
+  useEffect(() => {
+    Connectsocket.connect();
 
-socket.emit('message', 'Hello from client');
+    Connectsocket.on("connect", () => {
+      console.log("소켓 연결이 완료되었습니다!");
+    });
 
-// Socket.io 클라이언트는 서버에 대한 연결을 즉시 여는데 그것을 방지하는 것
-export const soCket = io('http://localhost:3000', {
-  autoConnect: false
-});
+    return () => {
+      if (Connectsocket.connected) {
+        Connectsocket.disconnect();
+      }
+    };
+  }, []);
+
+  return (
+    <>
+      <h3>소켓 연결 테스트</h3>
+    </>
+  );
+};
+
+export default React.memo(Socket);
