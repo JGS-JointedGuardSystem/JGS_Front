@@ -1,11 +1,12 @@
 import { toast } from "react-hot-toast";
-import { SignupInputType } from "../../../models/Signup";
-import instance from "../../axios";
-import { LoginInputType } from "../../../models/Login";
-import { setToken } from "../../functions/TokenManager";
 import { useNavigate } from "react-router";
 import { useMutation } from "react-query";
 import { AxiosError } from "axios";
+
+import instance from "../../axios";
+import { SignupInputType } from "../../../models/Signup";
+import { LoginInputType } from "../../../models/Login";
+import { setToken } from "../../functions/TokenManager";
 
 export const UserLogin = () => {
   const navigate = useNavigate();
@@ -22,7 +23,8 @@ export const UserLogin = () => {
       },
       onSuccess: ({ data }) => {
         toast.success("로그인에 성공했습니다.", { duration: 1000 });
-        setToken(data.access_token, data.refresh_token);
+        setToken(data.accessToken, data.refreshToken);
+        console.log(data.accessToken, data.refreshToken);
         navigate("/main");
       },
     }
