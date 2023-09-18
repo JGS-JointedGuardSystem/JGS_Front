@@ -24,7 +24,6 @@ export const UserLogin = () => {
       onSuccess: ({ data }) => {
         toast.success("로그인에 성공했습니다.", { duration: 1000 });
         setToken(data.accessToken, data.refreshToken);
-        console.log(data.accessToken, data.refreshToken);
         navigate("/main");
       },
     }
