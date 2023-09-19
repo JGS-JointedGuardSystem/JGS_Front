@@ -1,7 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import styled from "@emotion/styled";
-
 import { SignupInputData } from "../../constants";
 import { SignupInputType } from "../../models/Signup";
 import { signupInputsAtom } from "../../atom/authAtom";
