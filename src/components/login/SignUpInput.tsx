@@ -1,13 +1,14 @@
-import { useState } from "react";
-import { SignupInputData } from "../../constants";
-import Input from "../common/Input";
-import styled from "@emotion/styled";
-import { Eye } from "../../assets/login";
-import { SignupInputType } from "../../models/Signup";
+import { useState, useCallback } from "react";
 import { useRecoilState } from "recoil";
-import { signupInputsAtom } from "../../atom/authAtom";
+import styled from "@emotion/styled";
 
-function SignUpInput() {
+import { SignupInputData } from "../../constants";
+import { SignupInputType } from "../../models/Signup";
+import { signupInputsAtom } from "../../atom/authAtom";
+import { Eye } from "../../assets/login";
+import Input from "../common/Input";
+
+const SignUpInput = () => {
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
   const [isCheckShowPassword, setIsCheckShowPassword] =
     useState<boolean>(false);
@@ -15,6 +16,7 @@ function SignUpInput() {
 
   const passwordType = isShowPassword ? "text" : "password";
   const checkPasswordType = isCheckShowPassword ? "text" : "password";
+
   const getPasswordType = (name: string) => {
     switch (name) {
       case "password":
@@ -63,7 +65,7 @@ function SignUpInput() {
       ))}
     </InputContainer>
   );
-}
+};
 
 export default SignUpInput;
 

@@ -1,17 +1,18 @@
-import styled from "@emotion/styled";
-import { LoginInputDataType, LoginInputType } from "../../models/Login";
 import { useState } from "react";
+import styled from "@emotion/styled";
+import { useRecoilState } from "recoil";
+
 import Input from "../common/Input";
+import { LoginInputDataType, LoginInputType } from "../../models/Login";
 import { Eye } from "../../assets/login";
 import { LoginInputData } from "../../constants";
-import { useRecoilState } from "recoil";
 import { loginInputsAtom } from "../../atom/authAtom";
 
 const LoginInput = () => {
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
-  const passwordType = isShowPassword ? "text" : "password";
-
   const [inputs, setInputs] = useRecoilState<LoginInputType>(loginInputsAtom);
+
+  const passwordType = isShowPassword ? "text" : "password";
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
