@@ -1,24 +1,23 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router";
 import { useRecoilValue } from "recoil";
-
 import { LoginBackGroundImg } from "../assets/login";
-import LoginInput from "../components/login/LoginInput";
+import LoginInput from "../components/auth/LoginInput";
 import Button from "../components/common/Button";
 import { loginInputsAtom } from "../atom/authAtom";
-import { UserLogin } from "../utils/api/auth";
+import { useLogin } from "../hooks/useLogin";
 
 function LoginPage() {
   const navigate = useNavigate();
   const inputsData = useRecoilValue(loginInputsAtom);
-  const { mutate: loginMutate } = UserLogin();
+  const { mutate } = useLogin(inputsData);
 
   return (
     <Container>
       <Wrapper>
         <p>로그인</p>
         <LoginInput />
-        <Button text="로그인" onClick={() => loginMutate(inputsData)} />
+        <Button text="로그인" onClick={() => mutate()} />
         <span>
           계정이 없으신가요?
           <GoSignUp onClick={() => navigate("/signup")}>회원가입하기</GoSignUp>
@@ -50,7 +49,7 @@ const Wrapper = styled.div`
   height: 499px;
   left: 699px;
   top: 291px;
-  background-color: ${({ theme }) => theme.WHITE};
+  background-color: ${({ theme }) => theme.color.WHITE};
   box-shadow: 0px 4px 100px #000000;
   border-radius: 8px;
   padding: 0 70px;

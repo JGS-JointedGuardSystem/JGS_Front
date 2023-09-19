@@ -1,25 +1,24 @@
 import styled from "@emotion/styled";
 import { LoginBackGroundImg } from "../assets/login";
 import { useNavigate } from "react-router";
-import SignUpInput from "../components/login/SignUpInput";
+import SignUpInput from "../components/auth/SignUpInput";
 import Button from "../components/common/Button";
 import { signupInputsAtom } from "../atom/authAtom";
 import { useRecoilValue } from "recoil";
 import { toast } from "react-hot-toast";
 import { SignupInputType } from "../models/Signup";
-import { UserSignup } from "../utils/api/auth";
+import { useSignup } from "../hooks/useSignUp";
 
 const SignupPage = () => {
   const navigate = useNavigate();
   const inputsData = useRecoilValue<SignupInputType>(signupInputsAtom);
-
-  const { mutate: signupMutate } = UserSignup();
+  const { mutate } = useSignup(inputsData);
 
   const onClickSignup = () => {
     if (inputsData.password !== inputsData.checkPassword) {
       toast.error("비밀번호가 일치하지 않습니다.", { duration: 1000 });
     } else {
-      signupMutate(inputsData);
+      mutate();
     }
   };
 
@@ -60,7 +59,7 @@ const Wrapper = styled.div`
   min-height: 499px;
   left: 699px;
   top: 291px;
-  background-color: ${({ theme }) => theme.WHITE};
+  background-color: ${({ theme }) => theme.color.WHITE};
   box-shadow: 0px 4px 100px #000000;
   border-radius: 8px;
   padding: 25px 70px;
