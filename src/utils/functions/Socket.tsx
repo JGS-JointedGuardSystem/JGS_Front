@@ -9,14 +9,11 @@ export const Connectsocket = io(`${BASE_URL}${NAMESPACE}`, {
   autoConnect: false,
 });
 
-console.log(Connectsocket);
-
 const { accessToken } = getToken();
 
 const Socket = () => {
   useEffect(() => {
     Connectsocket.connect();
-    console.log("connect");
 
     Connectsocket.emit(
       "request_data_all",
