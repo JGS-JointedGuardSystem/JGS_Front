@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { HeadVector, JGSLogo } from "../../assets/login";
+import { JGSLogo } from "../../assets/icons";
 import { useState } from "react";
 import LogOutModal from "../auth/LogOutModal";
 import SmallButton from "../common/SmallButton";
@@ -14,7 +14,6 @@ const Header = () => {
       <Container>
         <LogoImg src={JGSLogo} alt="logo" />
         <Aside>
-          <Bell src={HeadVector} alt="vector" />
           <SmallButton
             text="로그아웃"
             color={theme.color.BLACK}
@@ -35,6 +34,7 @@ const Container = styled.div`
   height: 65px;
   padding: 0 10vw;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  background: white;
 `;
 
 const LogoImg = styled.img`
@@ -46,10 +46,6 @@ const Aside = styled.div`
   align-items: center;
   height: 100%;
   gap: 30px;
-`;
-
-const Bell = styled.img`
-  width: 20px;
 `;
 
 export default Header;
