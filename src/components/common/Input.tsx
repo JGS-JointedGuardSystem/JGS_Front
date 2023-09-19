@@ -4,7 +4,7 @@ import { ChangeEvent } from "react";
 interface Props {
   id: string;
   type: string;
-  name: string;
+  name?: string;
   placeholder: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
