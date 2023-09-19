@@ -14,7 +14,7 @@ export const useSignup = (inputsData: SignupInputType) => {
     },
     onSuccess: () => {
       toast.success("회원가입에 성공하였습니다.", { duration: 1000 });
-      navigate("/login");
+      navigate("/");
     },
   });
 };
