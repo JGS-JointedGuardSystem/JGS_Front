@@ -18,7 +18,7 @@ const InputContainer = styled.input`
   height: 63px;
   padding-left: 19px;
   padding-right: 50px;
-  background-color: ${({ theme }) => theme.grey100};
+  background-color: ${({ theme }) => theme.color.grey100};
   border: none;
   border-radius: 8px;
   outline: none;

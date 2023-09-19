@@ -1,4 +1,4 @@
-export const theme = {
+const color = {
   BLACK: "#000000",
   grey900: "#1a1a1a",
   grey800: "#333333",
@@ -12,3 +12,5 @@ export const theme = {
   grey50: "#fbfbfb",
   WHITE: "#FFFFFF",
 };
+
+export const theme = { color: color };
