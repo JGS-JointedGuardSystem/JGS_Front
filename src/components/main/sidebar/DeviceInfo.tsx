@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { DeleteIcon } from "../../../assets/icons";
 import Location from "./Location";
-import { useRemoveDevice } from "../../../hooks/useRemoveDevice";
+import { useState } from "react";
+import DeviceRemoveModal from "./DeviceRemoveModal";
 
 interface SidebarProps {
   deviceName: string;
@@ -16,19 +17,29 @@ const DeviceInfo = ({
   latitude,
   longitude,
 }: SidebarProps) => {
-  const { mutate } = useRemoveDevice({
-    device_no: deviceNumber,
-    deviceName: deviceName,
-  });
+  const [isModalActive, setIsModalActive] = useState<boolean>(false);
 
   return (
-    <Container>
-      <div>
-        <DeviceName>{deviceName}</DeviceName>
-        <img src={DeleteIcon} alt="쓰레기통" onClick={() => mutate()} />
-      </div>
-      <Location latitude={latitude} longitude={longitude} />
-    </Container>
+    <>
+      <Container>
+        <div>
+          <DeviceName>{deviceName}</DeviceName>
+          <img
+            src={DeleteIcon}
+            alt="쓰레기통"
+            onClick={() => setIsModalActive(true)}
+          />
+        </div>
+        <Location latitude={latitude} longitude={longitude} />
+      </Container>
+      {isModalActive && (
+        <DeviceRemoveModal
+          deviceName={deviceName}
+          deviceNumber={deviceNumber}
+          setIsActive={setIsModalActive}
+        />
+      )}
+    </>
   );
 };
 
