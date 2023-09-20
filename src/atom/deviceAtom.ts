@@ -6,7 +6,7 @@ export const AddDeviceModalInputsAtom = atom<AddDeviceRequestType>({
   default: {
     name: "",
     device_no: 0,
-    device_type: "",
+    device_type: 0,
     latitude: 0,
     longitude: 0,
   },
