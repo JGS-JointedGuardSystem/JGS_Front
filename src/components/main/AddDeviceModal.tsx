@@ -2,13 +2,13 @@ import React from "react";
 import styled from "@emotion/styled";
 import { useRecoilState } from "recoil";
 import { useTheme } from "@emotion/react";
-
 import Input from "../common/Input";
 import SmallInput from "../common/SmallInput";
 import { AddDeviceInputData, CoordinatesInputData } from "../../constants";
 import { AddDeviceRequestType, AddDeviceType } from "../../models/Main";
-import { AddDeviceModalInputsAtom } from "../../atom/deviceAddAtom";
+import { AddDeviceModalInputsAtom } from "../../atom/deviceAtom";
 import SmallButton from "../common/SmallButton";
+import { useAddDevice } from "../../hooks/useAddDevice";
 
 interface AddDeviceModalProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,9 +28,7 @@ const AddDeviceModal = ({ setIsOpen }: AddDeviceModalProps) => {
     });
   };
 
-  const onClick = () => {
-    /* 장치 추가 기능 */
-  };
+  const { mutate } = useAddDevice(inputs);
 
   return (
     <ModalWrapper onClick={() => setIsOpen(false)}>
@@ -69,11 +67,7 @@ const AddDeviceModal = ({ setIsOpen }: AddDeviceModalProps) => {
             color={theme.color.grey400}
             onClick={() => setIsOpen(false)}
           />
-          <SmallButton
-            text="확인"
-            color={theme.color.BLACK}
-            onClick={onClick}
-          />
+          <SmallButton text="추가" color={theme.color.BLACK} onClick={mutate} />
         </ButonBox>
       </Container>
     </ModalWrapper>
