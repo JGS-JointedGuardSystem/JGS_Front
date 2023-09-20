@@ -3,25 +3,29 @@ import DeviceInfo from "./DeviceInfo";
 import SmallButton from "../../common/SmallButton";
 import { useState } from "react";
 import { useTheme } from "@emotion/react";
+import AddDeviceModal from "../AddDeviceModal";
 
 const Sidebar = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const theme = useTheme();
 
   return (
-    <Container>
-      <SmallButton
-        text="장치 추가"
-        onClick={() => setIsActive(true)}
-        color={theme.color.BLACK}
-      />
-      <DeviceInfo
-        deviceName="김현민 01"
-        deviceNumber={2304}
-        latitude={36.390906587662}
-        longitude={127.36218898382}
-      />
-    </Container>
+    <>
+      <Container>
+        <SmallButton
+          text="장치 추가"
+          onClick={() => setIsActive(true)}
+          color={theme.color.BLACK}
+        />
+        <DeviceInfo
+          deviceName="김현민 01"
+          deviceNumber={2304}
+          latitude={36.390906587662}
+          longitude={127.36218898382}
+        />
+      </Container>
+      {isActive && <AddDeviceModal setIsOpen={setIsActive} />}
+    </>
   );
 };
 
