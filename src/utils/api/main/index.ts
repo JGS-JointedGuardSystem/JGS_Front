@@ -14,7 +14,7 @@ export const removeDevice = async (deviceNumber: number) => {
 };
 
 export const renameDevice = async (request: RenameDeviceRequestType) => {
-  return await instance.post("/remove_device", request);
+  return await instance.post("/rename_device", request);
 };
 
 export const changeDevice = async (request: ChangeDeviceRequestType) => {
