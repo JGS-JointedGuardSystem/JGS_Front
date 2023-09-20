@@ -9,15 +9,14 @@ interface Props {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ ...props }: Props) => {
+const SmallInput = ({ ...props }: Props) => {
   return <InputContainer {...props} />;
 };
 
 const InputContainer = styled.input`
   width: 100%;
   height: 63px;
-  padding-left: 19px;
-  padding-right: 50px;
+  padding: 0 19px;
   background-color: ${({ theme }) => theme.color.grey100};
   border: none;
   border-radius: 8px;
@@ -29,4 +28,4 @@ const InputContainer = styled.input`
   }
 `;
 
-export default Input;
+export default SmallInput;
