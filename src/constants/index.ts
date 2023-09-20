@@ -40,7 +40,7 @@ export const SignupInputData: LoginInputDataType[] = [
 export const AddDeviceInputData: AddDeviceType[] = [
   {
     title: "장치 이름",
-    name: "device_name",
+    name: "name",
     placeholder: "장치 이름을 입력해 주세요.",
   },
   {
