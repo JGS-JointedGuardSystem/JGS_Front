@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
-import { DeleteIcon } from "../../../assets/icons";
+import {
+  ChangeLocationIcon,
+  DeleteIcon,
+  RenameIcon,
+} from "../../../assets/icons";
 import Location from "./Location";
 import { useState } from "react";
 import DeviceRemoveModal from "./DeviceRemoveModal";
@@ -17,26 +21,43 @@ const DeviceInfo = ({
   latitude,
   longitude,
 }: SidebarProps) => {
-  const [isModalActive, setIsModalActive] = useState<boolean>(false);
+  const [isRemoveModalActive, setIsRemoveModalActive] =
+    useState<boolean>(false);
+  const [isRenameModalActive, setIsRenameModalActive] =
+    useState<boolean>(false);
+  const [isLocationModalActive, setIsLocationModalActive] =
+    useState<boolean>(false);
 
   return (
     <>
       <Container>
         <div>
           <DeviceName>{deviceName}</DeviceName>
-          <img
-            src={DeleteIcon}
-            alt="쓰레기통"
-            onClick={() => setIsModalActive(true)}
-          />
+          <ImgBox>
+            <img
+              src={RenameIcon}
+              alt="이름 변경"
+              onClick={() => setIsRenameModalActive(true)}
+            />
+            <img
+              src={ChangeLocationIcon}
+              alt="위치 변경"
+              onClick={() => setIsLocationModalActive(true)}
+            />
+            <img
+              src={DeleteIcon}
+              alt="쓰레기통"
+              onClick={() => setIsRemoveModalActive(true)}
+            />
+          </ImgBox>
         </div>
         <Location latitude={latitude} longitude={longitude} />
       </Container>
-      {isModalActive && (
+      {isRemoveModalActive && (
         <DeviceRemoveModal
           deviceName={deviceName}
           deviceNumber={deviceNumber}
-          setIsActive={setIsModalActive}
+          setIsActive={setIsRemoveModalActive}
         />
       )}
     </>
@@ -69,6 +90,11 @@ const DeviceName = styled.p`
   color: #245ae7;
   font-weight: 600;
   font-size: 25px;
+`;
+
+const ImgBox = styled.div`
+  display: flex;
+  gap: 20px;
 `;
 
 export default DeviceInfo;
