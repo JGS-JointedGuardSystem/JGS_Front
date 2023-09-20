@@ -16,3 +16,9 @@ export interface ChangeDeviceRequestType {
   latitude: number;
   longitude: number;
 }
+
+export interface AddDeviceType {
+  title: string;
+  name: string;
+  placeholder: string;
+}
