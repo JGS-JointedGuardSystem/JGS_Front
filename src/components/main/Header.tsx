@@ -4,11 +4,9 @@ import { useState } from "react";
 import LogOutModal from "../auth/LogOutModal";
 import SmallButton from "../common/SmallButton";
 import { useTheme } from "@emotion/react";
-import AddDeviceModal from "./AddDeviceModal";
 
 const Header = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const theme = useTheme();
 
   return (
@@ -21,16 +19,9 @@ const Header = () => {
             color={theme.color.BLACK}
             onClick={() => setIsActive(true)}
           />
-          {/* 임시 임시추가 버튼 */}
-          <SmallButton
-            text="장치추가"
-            color={theme.color.grey600}
-            onClick={() => setIsOpen(true)}
-          />
         </Aside>
       </Container>
       {isActive && <LogOutModal setIsActive={setIsActive} />}
-      {isOpen && <AddDeviceModal setIsOpen={setIsOpen} />}
     </>
   );
 };
