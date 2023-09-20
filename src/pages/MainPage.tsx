@@ -27,7 +27,7 @@ const MenuWrapper = styled.div`
 
 const Position = styled.div`
   width: 27%;
-  height: 620px;
+  height: 85vh;
   border-radius: 8px;
   background: var(--white, #fff);
   box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.24);
