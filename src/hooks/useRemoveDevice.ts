@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
 import { removeDevice } from "../utils/api/main";
 
-interface UseRemoveDeviceProps {
+interface RemoveDeviceRequestType {
   device_no: number;
   deviceName: string;
 }
@@ -11,7 +11,7 @@ interface UseRemoveDeviceProps {
 export const useRemoveDevice = ({
   device_no,
   deviceName,
-}: UseRemoveDeviceProps) => {
+}: RemoveDeviceRequestType) => {
   return useMutation(() => removeDevice(device_no), {
     onError: (error: AxiosError) => {
       toast.error(`${error.response?.data}`, { duration: 1000 });
