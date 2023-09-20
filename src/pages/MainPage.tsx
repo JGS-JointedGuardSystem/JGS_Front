@@ -3,18 +3,21 @@ import Header from "../components/main/Header";
 import styled from "@emotion/styled";
 import { useState } from "react";
 import ErrorModal from "../components/main/ErrorModal";
+import Sidebar from "../components/main/sidebar";
 
 const MainPage = () => {
-  const [isActive, setIsActive] = useState<boolean>(false);
+  const [isErrorActive, setIsErrorActive] = useState<boolean>(false);
 
   return (
     <>
       <Header />
       <MenuWrapper>
         <Map />
-        <Position>.</Position>
+        <Sidebar />
       </MenuWrapper>
-      {isActive && <ErrorModal setIsActive={setIsActive} deviceName="김현민" />}
+      {isErrorActive && (
+        <ErrorModal setIsActive={setIsErrorActive} deviceName="김현민" />
+      )}
     </>
   );
 };
@@ -23,15 +26,6 @@ const MenuWrapper = styled.div`
   padding: 35px 10vw;
   display: flex;
   justify-content: space-between;
-`;
-
-const Position = styled.div`
-  width: 27%;
-  height: 85vh;
-  border-radius: 8px;
-  background: var(--white, #fff);
-  box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.24);
-  overflow-y: scroll;
 `;
 
 export default MainPage;
