@@ -17,7 +17,7 @@ const Map = () => {
 };
 
 const Container = styled.div`
-  width: 70%;
+  width: 63%;
   height: 85vh;
   border-radius: 5px;
   box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.24);
