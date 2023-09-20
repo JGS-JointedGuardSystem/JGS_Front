@@ -23,6 +23,10 @@ const InputContainer = styled.input`
   border-radius: 8px;
   outline: none;
   font-size: 17px;
+  ::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+  }
 `;
 
 export default Input;
