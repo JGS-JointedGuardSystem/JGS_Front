@@ -22,3 +22,7 @@ export const changeLocationDevice = async (
 ) => {
   return await instance.post("/move_device", request);
 };
+
+export const passwordVerification = async (password: string) => {
+  return await instance.post("/pw_conf", { pw: password });
+};

@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Input from "../common/Input";
 import { useState } from "react";
 import SmallButton from "../common/SmallButton";
+import { usePasswordVerification } from "../../hooks/usePasswordVerification";
 interface LogOutModalProps {
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
   deviceName: string;
@@ -14,9 +15,14 @@ export const ErrorModal = ({ setIsActive, deviceName }: LogOutModalProps) => {
     setPassword(e.target.value);
   };
 
+  const { mutate } = usePasswordVerification({
+    password: password,
+    setIsActive: setIsActive,
+  });
+
   return (
-    <Background onClick={() => setIsActive(false)}>
-      <Container onClick={(e) => e.stopPropagation()}>
+    <Background>
+      <Container>
         <Text>📣 {deviceName}이 밟혔습니다.</Text>
         <Input
           id="password"
@@ -24,12 +30,7 @@ export const ErrorModal = ({ setIsActive, deviceName }: LogOutModalProps) => {
           placeholder="비밀번호 입력해주세요."
           onChange={(e) => onChangeInput(e)}
         />
-        <SmallButton
-          text="확인"
-          onClick={() => setIsActive(false)}
-          color="red"
-        />
-        {/* 비밀번호 확인 API 연동 */}
+        <SmallButton text="확인" onClick={mutate} color="red" />
       </Container>
     </Background>
   );
