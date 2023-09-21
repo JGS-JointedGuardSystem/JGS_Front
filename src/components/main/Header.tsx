@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { JGSLogo } from "../../assets/icons";
+import { JGSLOGO } from "../../assets/icons";
 import { useState } from "react";
 import LogOutModal from "../auth/LogOutModal";
 import SmallButton from "../common/SmallButton";
@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <>
       <Container>
-        <LogoImg src={JGSLogo} alt="logo" />
+        <LogoImg src={JGSLOGO} alt="logo" />
         <Aside>
           <SmallButton
             text="로그아웃"
