@@ -63,7 +63,10 @@ const DeviceInfo = ({
         />
       )}
       {isRenameModalActive && (
-        <DeviceChangeName setIsActive={setIsRenameModalActive} />
+        <DeviceChangeName
+          setIsActive={setIsRenameModalActive}
+          deviceNumber={deviceNumber}
+        />
       )}
       {isLocationModalActive && (
         <DeviceChangeLocatoin setIsActive={setIsLocationModalActive} />

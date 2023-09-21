@@ -3,12 +3,17 @@ import React, { ChangeEvent, useState } from "react";
 import Input from "../../common/Input";
 import SmallButton from "../../common/SmallButton";
 import { useTheme } from "@emotion/react";
+import { useChangeDeviceName } from "../../../hooks/useChangeDeviceName";
 
 interface DeviceChangeNameModalProps {
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+  deviceNumber: number;
 }
 
-const DeviceChangeName = ({ setIsActive }: DeviceChangeNameModalProps) => {
+const DeviceChangeName = ({
+  setIsActive,
+  deviceNumber,
+}: DeviceChangeNameModalProps) => {
   const [text, setText] = useState<string>("");
   const theme = useTheme();
 
@@ -16,9 +21,10 @@ const DeviceChangeName = ({ setIsActive }: DeviceChangeNameModalProps) => {
     setText(e.target.value);
   };
 
-  const onClick = () => {
-    /* 이름 변경 api 연동 */
-  };
+  const { mutate } = useChangeDeviceName({
+    device_no: deviceNumber,
+    Device_new_name: text,
+  });
 
   return (
     <Background onClick={() => setIsActive(false)}>
@@ -41,7 +47,7 @@ const DeviceChangeName = ({ setIsActive }: DeviceChangeNameModalProps) => {
             <SmallButton
               text="이름변경"
               color={theme.color.BLACK}
-              onClick={onClick}
+              onClick={() => mutate()}
             />
           </ButtonBox>
         </div>
