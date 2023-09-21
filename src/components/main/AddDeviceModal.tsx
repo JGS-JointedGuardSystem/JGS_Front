@@ -113,12 +113,12 @@ const InputWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 `;
 
 const CoordinatesWrapper = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 20px;
 `;
 
 const ButonBox = styled.div`

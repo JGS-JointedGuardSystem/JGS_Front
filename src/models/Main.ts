@@ -22,3 +22,8 @@ export interface AddDeviceType {
   name: string;
   placeholder: string;
 }
+
+export interface ChangeLocationDeviceType {
+  latitude: number;
+  longitude: number;
+}
