@@ -8,7 +8,7 @@ export interface AddDeviceRequestType {
 
 export interface RenameDeviceRequestType {
   device_no: number;
-  new_name: string;
+  Device_new_name: string;
 }
 
 export interface ChangeDeviceRequestType {
