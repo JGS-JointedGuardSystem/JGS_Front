@@ -10,7 +10,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async function (config) {
-    const accessToken = getToken();
+    const { accessToken } = getToken();
     //토큰 매니저 함수를 통해 토큰을 가져옵니다.
 
     if (accessToken) {
