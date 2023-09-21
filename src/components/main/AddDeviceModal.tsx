@@ -79,7 +79,7 @@ const ModalWrapper = styled.div`
   height: 100vh;
   display: flex;
   align-items: center;
-  background: rgba(204, 204, 204, 0.5);
+  background: rgba(130, 128, 128, 0.5);
   justify-content: center;
   position: absolute;
   top: 0;
