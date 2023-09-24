@@ -1,37 +1,37 @@
-// import { useEffect } from "react";
-// import { io } from "socket.io-client";
-// import { getToken } from "./TokenManager";
+import { useEffect } from "react";
+import { io } from "socket.io-client";
+import { getToken } from "./TokenManager";
 
-// const BASE_URL = process.env.REACT_APP_PUBLIC_JGS_BASE_URL;
-// const NAMESPACE = `/frontend`;
+const BASE_URL = process.env.REACT_APP_PUBLIC_JGS_BASE_URL;
 
-// export const Connectsocket = io(`${BASE_URL}${NAMESPACE}`, {
-//   autoConnect: false,
-// });
+export const Connectsocket = io(`${BASE_URL}/frontend`, {
+  autoConnect: false,
+});
 
-// const { accessToken } = getToken();
+export const EmbbedSocket = io(`${BASE_URL}`);
 
-// const Socket = () => {
-//   useEffect(() => {
-//     Connectsocket.connect();
+console.log(Connectsocket);
 
-//     Connectsocket.emit(
-//       "request_data_all",
-//       { accesstoken: accessToken },
-//       (data: string) => {
-//         console.log(data);
-//       }
-//     );
-//   }, []);
-//   return <></>;
-// };
+const { accessToken } = getToken();
 
-// export default Socket;
+const Socket = () => {
+  useEffect(() => {
+    Connectsocket.connect();
+    Connectsocket.emit("request_data_all", { accesstoken: accessToken });
 
-import React from "react";
+    EmbbedSocket.on("Alert", ({ name, id, lat, long, type }) => {
+      alert(
+        `Name: ${name}, ID: ${id}, Latitude: ${lat}, Longitude: ${long}, Type: ${type}`
+      );
+    });
 
-function Socket() {
-  return <div>Socket</div>;
-}
+    return () => {
+      Connectsocket.disconnect();
+      EmbbedSocket.disconnect();
+    };
+  }, []);
+
+  return <Socket />;
+};
 
 export default Socket;

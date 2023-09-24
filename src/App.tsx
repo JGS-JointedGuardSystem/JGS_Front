@@ -6,7 +6,7 @@ import { RecoilRoot } from "recoil";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { theme } from "./styles/Theme";
 import { Toaster } from "react-hot-toast";
-// import Socket from "./utils/functions/Socket";
+import Socket from "./utils/functions/Socket";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,7 +26,7 @@ function App() {
         <Global styles={globalStyle} />
         <RecoilRoot>
           <Toaster />
-          {/* <Socket /> */}
+          <Socket />
           <BrowserRouter>
             <MainRouter />
           </BrowserRouter>
