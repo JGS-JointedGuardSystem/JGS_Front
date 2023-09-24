@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { ChangeEvent, useState } from "react";
+import toast from "react-hot-toast";
 import Input from "../../common/Input";
 import SmallButton from "../../common/SmallButton";
 import { useTheme } from "@emotion/react";
@@ -23,8 +24,17 @@ const DeviceChangeName = ({
 
   const { mutate } = useChangeDeviceName({
     device_no: deviceNumber,
-    Device_new_name: text,
+    device_new_name: text,
   });
+
+  const CheckName = () => {
+    const textBlank = /^\s+|\s+$/g;
+    if (text.replace(textBlank, "") === "") {
+      toast.error(`변경할 이름을 입력해 주세요.`, { duration: 1500 });
+      return false;
+    }
+    return true;
+  };
 
   return (
     <Background onClick={() => setIsActive(false)}>
@@ -47,7 +57,7 @@ const DeviceChangeName = ({
             <SmallButton
               text="이름변경"
               color={theme.color.BLACK}
-              onClick={() => mutate()}
+              onClick={() => CheckName() && mutate()}
             />
           </ButtonBox>
         </div>
