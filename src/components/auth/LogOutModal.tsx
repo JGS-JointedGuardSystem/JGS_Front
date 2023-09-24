@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { useSetRecoilState } from "recoil";
 import { loginInputsAtom } from "../../atom/authAtom";
 import { removeToken } from "../../utils/functions/TokenManager";
+import toast from "react-hot-toast";
 
 interface LogOutModalProps {
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,6 +23,7 @@ export const LogOutModal = ({ setIsActive }: LogOutModalProps) => {
       id: "",
       password: "",
     });
+    toast.success(`로그아웃 되었습니다.`, { duration: 1500 });
   };
 
   return (
