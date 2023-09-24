@@ -16,6 +16,7 @@ export const ChangeDeviceLocationModalInputsAtom =
   atom<ChangeLocationDeviceType>({
     key: "ChangeDeviceLocationModalInputsAtom",
     default: {
+      device_no: 0,
       latitude: 0,
       longitude: 0,
     },
