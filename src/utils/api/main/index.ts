@@ -1,6 +1,6 @@
 import {
   AddDeviceRequestType,
-  ChangeDeviceRequestType,
+  ChangeLocationDeviceType,
   RenameDeviceRequestType,
 } from "../../../models/Main";
 import instance from "../../axios";
@@ -18,7 +18,7 @@ export const renameDevice = async (request: RenameDeviceRequestType) => {
 };
 
 export const changeLocationDevice = async (
-  request: ChangeDeviceRequestType
+  request: ChangeLocationDeviceType
 ) => {
   return await instance.post("/move_device", request);
 };
