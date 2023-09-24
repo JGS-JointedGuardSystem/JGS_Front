@@ -8,10 +8,10 @@ export interface AddDeviceRequestType {
 
 export interface RenameDeviceRequestType {
   device_no: number;
-  new_name: string;
+  device_new_name: string;
 }
 
-export interface ChangeDeviceRequestType {
+export interface ChangeLocationDeviceType {
   device_no: number;
   latitude: number;
   longitude: number;
@@ -21,9 +21,4 @@ export interface AddDeviceType {
   title: string;
   name: string;
   placeholder: string;
-}
-
-export interface ChangeLocationDeviceType {
-  latitude: number;
-  longitude: number;
 }

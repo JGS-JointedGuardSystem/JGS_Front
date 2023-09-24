@@ -1,14 +1,20 @@
 import styled from "@emotion/styled";
 import React, { ChangeEvent, useState } from "react";
+import toast from "react-hot-toast";
 import Input from "../../common/Input";
 import SmallButton from "../../common/SmallButton";
 import { useTheme } from "@emotion/react";
+import { useChangeDeviceName } from "../../../hooks/useChangeDeviceName";
 
 interface DeviceChangeNameModalProps {
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+  deviceNumber: number;
 }
 
-const DeviceChangeName = ({ setIsActive }: DeviceChangeNameModalProps) => {
+const DeviceChangeName = ({
+  setIsActive,
+  deviceNumber,
+}: DeviceChangeNameModalProps) => {
   const [text, setText] = useState<string>("");
   const theme = useTheme();
 
@@ -16,8 +22,18 @@ const DeviceChangeName = ({ setIsActive }: DeviceChangeNameModalProps) => {
     setText(e.target.value);
   };
 
-  const onClick = () => {
-    /* 이름 변경 api 연동 */
+  const { mutate } = useChangeDeviceName({
+    device_no: deviceNumber,
+    device_new_name: text,
+  });
+
+  const CheckName = () => {
+    const textBlank = /^\s+|\s+$/g;
+    if (text.replace(textBlank, "") === "") {
+      toast.error(`변경할 이름을 입력해 주세요.`, { duration: 1500 });
+      return false;
+    }
+    return true;
   };
 
   return (
@@ -41,7 +57,7 @@ const DeviceChangeName = ({ setIsActive }: DeviceChangeNameModalProps) => {
             <SmallButton
               text="이름변경"
               color={theme.color.BLACK}
-              onClick={onClick}
+              onClick={() => CheckName() && mutate()}
             />
           </ButtonBox>
         </div>

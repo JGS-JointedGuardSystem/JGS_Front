@@ -8,7 +8,7 @@ import Location from "./Location";
 import { useState } from "react";
 import DeviceRemoveModal from "./DeviceRemoveModal";
 import DeviceChangeName from "./DeviceChangeName";
-import DeviceChangeLocatoin from "./DeviceChangeLocatoin";
+import DeviceChangeLocation from "./DeviceChangeLocation";
 
 interface SidebarProps {
   deviceName: string;
@@ -63,10 +63,18 @@ const DeviceInfo = ({
         />
       )}
       {isRenameModalActive && (
-        <DeviceChangeName setIsActive={setIsRenameModalActive} />
+        <DeviceChangeName
+          setIsActive={setIsRenameModalActive}
+          deviceNumber={deviceNumber}
+        />
       )}
       {isLocationModalActive && (
-        <DeviceChangeLocatoin setIsActive={setIsLocationModalActive} />
+        <DeviceChangeLocation
+          setIsActive={setIsLocationModalActive}
+          latitude={latitude}
+          longitude={longitude}
+          deviceNumber={deviceNumber}
+        />
       )}
     </>
   );

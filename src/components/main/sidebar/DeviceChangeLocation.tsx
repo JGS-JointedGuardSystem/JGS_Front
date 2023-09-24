@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useRecoilState } from "recoil";
 import { useTheme } from "@emotion/react";
 
@@ -8,12 +8,22 @@ import SmallButton from "../../common/SmallButton";
 import { CoordinatesInputData } from "../../../constants";
 import { ChangeDeviceLocationModalInputsAtom } from "../../../atom/deviceAtom";
 import { ChangeLocationDeviceType, AddDeviceType } from "../../../models/Main";
+import { useChangeDeviceLocation } from "../../../hooks/useChangeDeviceLocation";
+import toast from "react-hot-toast";
 
 interface DeviceChangeLocationModalProps {
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+  latitude: number;
+  longitude: number;
+  deviceNumber: number;
 }
 
-const DeviceChangeName = ({ setIsActive }: DeviceChangeLocationModalProps) => {
+const DeviceChangeLocation = ({
+  setIsActive,
+  latitude,
+  longitude,
+  deviceNumber,
+}: DeviceChangeLocationModalProps) => {
   const theme = useTheme();
   const [inputs, setInputs] = useRecoilState<ChangeLocationDeviceType>(
     ChangeDeviceLocationModalInputsAtom
@@ -27,8 +37,31 @@ const DeviceChangeName = ({ setIsActive }: DeviceChangeLocationModalProps) => {
     });
   };
 
-  const onClick = () => {
-    /* 이름 변경 api 연동 */
+  const { mutate } = useChangeDeviceLocation({
+    device_no: deviceNumber,
+    latitude: inputs.latitude,
+    longitude: inputs.longitude,
+  });
+
+  const CheckInputs = () => {
+    const latitudeInput = inputs.latitude.toString().trim();
+    const longitudeInput = inputs.longitude.toString().trim();
+
+    if (
+      latitudeInput === "" ||
+      longitudeInput === "" ||
+      isNaN(parseFloat(latitudeInput)) ||
+      isNaN(parseFloat(longitudeInput))
+    ) {
+      toast.error(
+        `입력한 값이 숫자가 아니거나 공백이 포함되어 있습니다. 다시 입력해주세요.`,
+        {
+          duration: 1500,
+        }
+      );
+      return false;
+    }
+    return true;
   };
 
   return (
@@ -58,7 +91,7 @@ const DeviceChangeName = ({ setIsActive }: DeviceChangeLocationModalProps) => {
             <SmallButton
               text="위치변경"
               color={theme.color.BLACK}
-              onClick={onClick}
+              onClick={() => CheckInputs() && mutate()}
             />
           </ButtonBox>
         </div>
@@ -114,4 +147,4 @@ const InputWrapper = styled.div`
   gap: 20px;
 `;
 
-export default DeviceChangeName;
+export default DeviceChangeLocation;
