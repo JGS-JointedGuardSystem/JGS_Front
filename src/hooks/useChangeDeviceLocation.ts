@@ -19,7 +19,7 @@ export const useChangeDeviceLocation = ({
       },
       onSuccess: () => {
         toast.success(
-          `장치 위치가 위도${latitude} 경도${longitude}로 변경 되었습니다.`,
+          `장치 위치가 위도:${latitude} 경도:${longitude}로 변경 되었습니다.`,
           {
             duration: 2000,
           }

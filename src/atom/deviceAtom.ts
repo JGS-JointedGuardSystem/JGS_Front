@@ -1,4 +1,8 @@
-import { AddDeviceRequestType, ChangeLocationDeviceType } from "../models/Main";
+import {
+  AddDeviceRequestType,
+  ChangeLocationDeviceType,
+  DeviceStateAtomType,
+} from "../models/Main";
 import { atom } from "recoil";
 
 export const AddDeviceModalInputsAtom = atom<AddDeviceRequestType>({
@@ -21,3 +25,14 @@ export const ChangeDeviceLocationModalInputsAtom =
       longitude: 0,
     },
   });
+
+export const DeviceStateAtom = atom<DeviceStateAtomType>({
+  key: "DeviceStateAtom",
+  default: {
+    name: "",
+    id: 0,
+    latitude: 0,
+    longitude: 0,
+    device_type: 0,
+  },
+});

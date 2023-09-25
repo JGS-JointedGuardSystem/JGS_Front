@@ -22,3 +22,11 @@ export interface AddDeviceType {
   name: string;
   placeholder: string;
 }
+
+export interface DeviceStateAtomType {
+  name: string;
+  id: number;
+  latitude: number;
+  longitude: number;
+  device_type: 0 | 1;
+}
