@@ -42,7 +42,6 @@ const DeviceChangeName = ({
         <div>
           <Title>새 장치 이름</Title>
           <Input
-            id="1"
             name="새 장치 이름"
             type="text"
             placeholder="새 장치 이름을 입력해 주세요."

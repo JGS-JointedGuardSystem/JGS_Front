@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { ChangeEvent } from "react";
 
 interface Props {
-  id: string;
+  id?: string;
   type: string;
   name?: string;
   placeholder: string;
