@@ -12,6 +12,7 @@ import { useAddDevice } from "../../hooks/useAddDevice";
 
 interface AddDeviceModalProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  updateDeviceData: any;
 }
 
 const AddDeviceModal = ({ setIsOpen }: AddDeviceModalProps) => {
@@ -67,7 +68,14 @@ const AddDeviceModal = ({ setIsOpen }: AddDeviceModalProps) => {
             color={theme.color.grey400}
             onClick={() => setIsOpen(false)}
           />
-          <SmallButton text="추가" color={theme.color.BLACK} onClick={mutate} />
+          <SmallButton
+            text="추가"
+            color={theme.color.BLACK}
+            onClick={() => {
+              mutate();
+              setIsOpen(false);
+            }}
+          />
         </ButonBox>
       </Container>
     </ModalWrapper>
