@@ -56,7 +56,12 @@ const DeviceChangeName = ({
             <SmallButton
               text="이름변경"
               color={theme.color.BLACK}
-              onClick={() => CheckName() && mutate()}
+              onClick={() => {
+                if (CheckName()) {
+                  mutate();
+                  setIsActive(false); 
+                }
+              }}
             />
           </ButtonBox>
         </div>

@@ -33,7 +33,10 @@ export const DeviceRemoveModal = ({
           />
           <SmallButton
             text="제거"
-            onClick={() => mutate()}
+            onClick={() => {
+              mutate();
+              setIsActive(false); 
+            }}
             color={theme.color.BLACK}
           />
         </ButtonBlock>

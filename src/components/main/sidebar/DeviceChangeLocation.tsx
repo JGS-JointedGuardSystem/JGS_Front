@@ -91,7 +91,12 @@ const DeviceChangeLocation = ({
             <SmallButton
               text="위치변경"
               color={theme.color.BLACK}
-              onClick={() => CheckInputs() && mutate()}
+              onClick={() => {
+                if (CheckInputs()) {
+                  mutate();
+                  setIsActive(false); 
+                }
+              }}
             />
           </ButtonBox>
         </div>
