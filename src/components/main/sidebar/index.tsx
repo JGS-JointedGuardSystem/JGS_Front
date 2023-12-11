@@ -1,13 +1,26 @@
 import styled from "@emotion/styled";
 import DeviceInfo from "./DeviceInfo";
 import SmallButton from "../../common/SmallButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@emotion/react";
 import AddDeviceModal from "../AddDeviceModal";
+import { useSocket } from "../../../hooks/useSocket";
+import { AddDeviceRequestType } from "../../../models/Main";
 
 const Sidebar = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const theme = useTheme();
+
+  const { getDeviceList, connect, disconnect, deviceData } = useSocket();
+
+  useEffect(() => {
+    connect();
+    window.onbeforeunload = () => disconnect();
+  }, [connect, disconnect]);
+
+  useEffect(() => {
+    getDeviceList();
+  }, [getDeviceList])
 
   return (
     <>
@@ -17,12 +30,21 @@ const Sidebar = () => {
           onClick={() => setIsActive(true)}
           color={theme.color.BLACK}
         />
-        <DeviceInfo
-          deviceName="김현민 01"
-          deviceNumber={2304}
-          latitude={36.390906587662}
-          longitude={127.36218898382}
-        />
+          <DeviceInfo 
+            deviceName="김현민1더미값입니다~~~~~!!!^^"
+            deviceNumber={2307}
+            latitude={123.123}
+            longitude={124.124}
+          />
+        {deviceData.map((item: AddDeviceRequestType, index: number) => (
+          <DeviceInfo 
+            key={index}
+            deviceName={item.name}
+            deviceNumber={item.device_no}
+            latitude={item.latitude}
+            longitude={item.longitude}
+          />
+        ))}
       </Container>
       {isActive && <AddDeviceModal setIsOpen={setIsActive} />}
     </>
