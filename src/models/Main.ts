@@ -1,32 +1,25 @@
-export interface AddDeviceRequestType {
-  name: string; // 장치 이름
-  device_no: number; // 장치 고유 번호
-  device_type: 0 | 1; // 장치 타입
-  latitude: number; // 위도
-  longitude: number; // 경도
-}
-
-export interface RenameDeviceRequestType {
+type BaseDeviceType = {
+  name: string;
+  id: string | number;
   device_no: number;
   device_new_name: string;
+  device_type: 0 | 1;
+  lattitude: number;
+  longitude: number;
+  curr_status?: number;
+  user_id?: string;
 }
 
-export interface ChangeLocationDeviceType {
-  device_no: number;
-  latitude: number;
-  longitude: number;
-}
+export type AddDeviceRequestType = Omit<BaseDeviceType, 'id' | 'device_new_name'>;
+
+export type DeviceStateAtomType = Omit<BaseDeviceType, 'device_no' | 'device_new_name'>;
+
+export type RenameDeviceRequestType = Pick<BaseDeviceType, 'device_no' | 'device_new_name'>;
+
+export type ChangeLocationDeviceType = Pick<BaseDeviceType, 'device_no' | 'lattitude' | 'longitude'>;
 
 export interface AddDeviceType {
   title: string;
   name: string;
   placeholder: string;
-}
-
-export interface DeviceStateAtomType {
-  name: string;
-  id: number;
-  latitude: number;
-  longitude: number;
-  device_type: 0 | 1;
 }
