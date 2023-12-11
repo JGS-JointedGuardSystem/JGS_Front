@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import { useRecoilState } from "recoil";
 import { useTheme } from "@emotion/react";
 
@@ -20,8 +20,6 @@ interface DeviceChangeLocationModalProps {
 
 const DeviceChangeLocation = ({
   setIsActive,
-  latitude,
-  longitude,
   deviceNumber,
 }: DeviceChangeLocationModalProps) => {
   const theme = useTheme();
@@ -63,6 +61,8 @@ const DeviceChangeLocation = ({
     }
     return true;
   };
+
+  console.log(mutate);
 
   return (
     <Background onClick={() => setIsActive(false)}>

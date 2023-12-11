@@ -5,10 +5,12 @@ import {
   RenameIcon,
 } from "../../../assets/icons";
 import Location from "./Location";
-import { useState } from "react";
 import DeviceRemoveModal from "./DeviceRemoveModal";
+import ErrorModal from "../ErrorModal";
+import { useEffect, useState } from "react";
 import DeviceChangeName from "./DeviceChangeName";
 import DeviceChangeLocation from "./DeviceChangeLocation";
+import { useSocket } from "../../../hooks/useSocket";
 
 interface SidebarProps {
   deviceName: string;
@@ -23,15 +25,22 @@ const DeviceInfo = ({
   latitude,
   longitude,
 }: SidebarProps) => {
-  const [isRemoveModalActive, setIsRemoveModalActive] =
-    useState<boolean>(false);
-  const [isRenameModalActive, setIsRenameModalActive] =
-    useState<boolean>(false);
-  const [isLocationModalActive, setIsLocationModalActive] =
-    useState<boolean>(false);
+  
+  const [isRemoveModalActive, setIsRemoveModalActive] = useState<boolean>(false);
+  const [isRenameModalActive, setIsRenameModalActive] = useState<boolean>(false);
+  const [isLocationModalActive, setIsLocationModalActive] = useState<boolean>(false);
+
+  const { status, connect, disconnect, isOpenAlert, setIsOpenAlert } = useSocket();
+
+  useEffect(() => {
+    connect();
+    window.onbeforeunload = () => disconnect();
+  }, [connect, disconnect]);
 
   return (
     <>
+    <p>{status}</p>
+    {isOpenAlert && <ErrorModal deviceName={deviceName} setIsOpenAlert={setIsOpenAlert} />}
       <Container>
         <div>
           <DeviceName>{deviceName}</DeviceName>

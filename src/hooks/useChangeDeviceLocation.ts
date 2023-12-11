@@ -1,6 +1,4 @@
 import { useMutation } from "react-query";
-import { useRecoilState } from "recoil";
-import { ChangeDeviceLocationModalInputsAtom } from "../atom/deviceAtom";
 import { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
 import { ChangeLocationDeviceType } from "../models/Main";

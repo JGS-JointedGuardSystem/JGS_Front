@@ -3,12 +3,13 @@ import Input from "../common/Input";
 import { useState } from "react";
 import SmallButton from "../common/SmallButton";
 import { usePasswordVerification } from "../../hooks/usePasswordVerification";
+
 interface LogOutModalProps {
-  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpenAlert: React.Dispatch<React.SetStateAction<boolean>>;
   deviceName: string;
 }
 
-export const ErrorModal = ({ setIsActive, deviceName }: LogOutModalProps) => {
+export const ErrorModal = ({ setIsOpenAlert, deviceName }: LogOutModalProps) => {
   const [password, setPassword] = useState<string>("");
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,8 +17,8 @@ export const ErrorModal = ({ setIsActive, deviceName }: LogOutModalProps) => {
   };
 
   const { mutate } = usePasswordVerification({
-    password: password,
-    setIsActive: setIsActive,
+    password,
+    setIsOpenAlert,
   });
 
   return (
@@ -39,14 +40,14 @@ export const ErrorModal = ({ setIsActive, deviceName }: LogOutModalProps) => {
 const Background = styled.div`
   width: 100%;
   height: 100%;
-  background: rgba(255, 3, 3, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 99;
+  z-index: 100;
+  background: rgba(255, 3, 3, 0.5);
 `;
 
 const Container = styled.div`
@@ -60,7 +61,12 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   gap: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
+
 
 const Text = styled.p`
   font-size: 25px;
