@@ -30,7 +30,7 @@ const DeviceInfo = ({
   const [isRenameModalActive, setIsRenameModalActive] = useState<boolean>(false);
   const [isLocationModalActive, setIsLocationModalActive] = useState<boolean>(false);
 
-  const { status, connect, disconnect, isOpenAlert, setIsOpenAlert } = useSocket();
+  const { connect, disconnect, isOpenAlert, setIsOpenAlert } = useSocket();
 
   useEffect(() => {
     connect();
@@ -39,7 +39,6 @@ const DeviceInfo = ({
 
   return (
     <>
-    <p>{status}</p>
     {isOpenAlert && <ErrorModal deviceName={deviceName} setIsOpenAlert={setIsOpenAlert} />}
       <Container>
         <div>
@@ -114,7 +113,7 @@ const Container = styled.div`
 const DeviceName = styled.p`
   color: #245ae7;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 20px;
 `;
 
 const ImgBox = styled.div`
