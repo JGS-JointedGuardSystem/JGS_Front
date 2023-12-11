@@ -30,7 +30,7 @@ export const DeviceStateAtom = atom<DeviceStateAtomType>({
   key: "DeviceStateAtom",
   default: {
     name: "",
-    id: 0,
+    device_no: 0,
     latitude: 0,
     longitude: 0,
     device_type: 0,
